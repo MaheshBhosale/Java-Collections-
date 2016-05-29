@@ -34,6 +34,45 @@ class Vectors
 		c.d=d;
 		v.add(c);
 	}
+	void addpos(int i)
+	{
+		System.out.println("Enter Name and Purchase date of the car:");
+		String nm="",d="";
+		try
+		{
+			nm=br.readLine();
+			d=br.readLine();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Enetr Correct String");
+		}
+		car c=new car();
+		c.name=nm;
+		c.d=d;
+		i=i-1;
+		try{
+			if(i<0||i>=v.size())
+			{
+				int start=0,end=0;
+				if(v.isEmpty())
+				{
+					start=0;end=0;
+				}
+				else
+				{
+				start=1;end=v.size();
+				}
+				System.out.println("Eneter index in range " +start+" to "+end);
+				throw new myException();
+			}
+		}
+		catch(myException e)
+		{
+			return;
+		}
+		v.add(i,c);
+	}
 	void remove()
 	{
 		System.out.println("Enter index of element to be removed:");
@@ -88,7 +127,15 @@ class Vectors
 	    }
 	    return v.get(s);
 	  }
-	    
+	  void display()
+	  {
+	  
+	  	for(int i=0;i<v.size();i++)
+	  	{
+	  		car c=(car)v.get(i);
+	  		System.out.println("Car Details:\nName-"+c.name+"\nDate-"+c.d);
+	  	}
+	  }	  
 	  public static void main(String [] args)
 	  {
 	  	Vectors vi=new Vectors();
@@ -99,14 +146,14 @@ class Vectors
 	  	int opt=1;
 	  	while(true)
 	  	{
-	  		System.out.println("\nEnetr options\n1.Add\n2.Remove\n3.Get\n4.Exit");
+	  		System.out.println("\nEnetr options\n1.Add\n2.Add at position\n3.Remove\n4.Get\n5.Diaply\n6.Exit");
 	  		try
 			{
 				opt=Integer.parseInt(br.readLine());
 			}
 			catch(Exception e)
 			{}
-			if(opt>4||opt<=0)
+			if(opt>6||opt<=0)
 			{
 				System.out.println("Invalid Option");
 				continue;
@@ -117,13 +164,25 @@ class Vectors
 						add();
 						break;
 				case 2:
-						remove();
+						System.out.println("Enter position at which car is to be entered");
+						try
+						{
+							int i=Integer.parseInt(br.readLine());
+							addpos(i);
+						}
+						catch(Exception e){}
 						break;
 				case 3:
+						remove();
+						break;
+				case 4:
 						car c=get();
 						System.out.println("Car Details:\nName:"+c.name+"\nDate:"+c.d);
 						break;
-				case 4:
+				case 5:
+						display();
+						break;
+				case 6:
 						return;
 			}
 		}
