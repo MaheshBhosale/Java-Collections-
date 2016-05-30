@@ -1,3 +1,4 @@
+//This program demonstrates Calculating Memory available anf how Grbage collection works
 import java.util.Date; 
 public class CheckGC { 
      public static void main(String [] args) {  
