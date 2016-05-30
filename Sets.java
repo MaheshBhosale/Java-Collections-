@@ -113,7 +113,7 @@ class Sets
 						ArrayList l=new ArrayList(s);
 						Collections.sort(l,Collections.reverseOrder());
 						System.out.println(""+l);
-						s.addAll(l));
+						s.addAll(l);
 						break;
 				case 6:
 						return;
